@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  mysql-service:
+    image: mysql:5.6
+    container_name: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"  # ok as it won't be deployed to production
+      MYSQL_DATABASE: crunshbase
+    volumes:
+      - ~/Downloads/crunchbase_2013_snapshot_20131212:/docker-entrypoint-initdb.d
+  es-service:
+    image: elasticsearch:2.4.5-alpine
+    container_name: es
+    ports:
+      - 9200:9200
+  pyramid-service:
+    build: ./pyramid
+    container_name: pyramid
+    volumes:
+      - ./pyramid:/app
+    ports:
+      - 6543:6543
+    depends_on:
+      - mysql-service
+      - es-service
