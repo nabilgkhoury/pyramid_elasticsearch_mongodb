@@ -1,18 +1,8 @@
-# pyramid_hello_world/app.py
-
+#!/usr/bin/env python
 from wsgiref.simple_server import make_server
-from pyramid.config import Configurator
-from pyramid.response import Response
-
-def hello_world(request):
-    print('Request inbound!')
-    return Response('Docker works with Pyramid!')
-
+from pyramid_app import main
 
 if __name__ == '__main__':
-    config = Configurator()
-    config.add_route('hello', '/')
-    config.add_view(hello_world, route_name='hello')
-    app = config.make_wsgi_app()
+    app = main()
     server = make_server('0.0.0.0', 6543, app)
     server.serve_forever()

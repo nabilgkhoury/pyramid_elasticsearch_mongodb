@@ -12,6 +12,9 @@ class TestSQLToESImporter(unittest.TestCase):
         self.sql_to_es_importer.delete_index()
         self.documents = self.sql_to_es_importer.pull()
 
+    def tearDown(self):
+        self.sql_to_es_importer.delete_index()
+
     def test_sql_pull(self):
         self.assertTrue(len(list(self.documents)) == 1)
 
