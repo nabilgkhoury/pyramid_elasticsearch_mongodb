@@ -15,15 +15,15 @@ class TestESSearch(unittest.TestCase):
 
     def test_search_by_location(self):
         hits = self.es_search.search_by_location('seattle')
-        self.assertEqual(len(hits), 1)
+        self.assertEqual(len(hits), 4)
 
-    def test_search_by_event(self):
-        hits = self.es_search.search_by_event('democratic')
-        self.assertEqual(len(hits), 1)
+    def test_search_by_id(self):
+        hit = self.es_search.search_by_id('c:1242')
+        self.assertEqual(hit['company_name'], 'Microsoft')
 
     def test_search_by_text(self):
-        hits = self.es_search.search_by_text('wild stuff')
-        self.assertEqual(len(hits), 1)
+        hits = self.es_search.search_by_text('million domestic users')
+        self.assertEqual(len(hits), 10)
 
 
 if __name__ == '__main__':
