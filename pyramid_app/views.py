@@ -16,10 +16,10 @@ def login(request):
 
 @view_config(route_name='search', renderer='templates/search.jinja2')
 def search_companies(request):
-    return dict(title='Search Page!')
+    return dict(title='Search Page')
 
 
 @view_config(route_name='company', renderer='templates/company.jinja2')
 def company_profile(request):
-    return dict(title='Company Profile!')
+    return dict(title='Company Profile')
 

@@ -2,6 +2,7 @@
 import unittest
 
 from pyramid import testing
+from pyramid.response import Response
 from pyramid_app.views import (
     login,
     search_companies,
@@ -18,18 +19,18 @@ class ViewTests(unittest.TestCase):
 
     def test_login(self):
         request = testing.DummyRequest()
-        response = login(request)
+        response = Response(login(request))
         self.assertEqual(response.status_code, 200)
-        self.assertIn(b'Login', response.body)
+        self.assertIn('Login', response.body)
 
     def test_search(self):
         request = testing.DummyRequest()
-        response = search_companies(request)
+        response = Response(search_companies(request))
         self.assertEqual(response.status_code, 200)
-        self.assertIn(b'Search', response.body)
+        self.assertIn('Search', response.body)
 
     def test_profile(self):
         request = testing.DummyRequest()
-        response = company_profile(request)
+        response = Response(company_profile(request))
         self.assertEqual(response.status_code, 200)
-        self.assertIn(b'Profile', response.body)
+        self.assertIn('Profile', response.body)
