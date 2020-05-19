@@ -1,4 +1,4 @@
-#!/usr/bin/env python -m
+#!/usr/bin/env python
 
 from typing import List, Dict
 from sqlalchemy import create_engine
@@ -7,13 +7,11 @@ from sqlalchemy.exc import SQLAlchemyError, ProgrammingError
 
 from elasticsearch2 import Elasticsearch
 
+from pyramid_app import ES_CONNECT, ES_INDEX
+
 
 # mysql connection string to crunshbase database
-SQL_CONNECT = "mysql://mysql-service/crunshbase"
-# es connection
-ES_CONNECT = (dict(host='es-service', port=9200),)
-ES_INDEX = 'crunshbase'
-
+SQL_CONNECT = "mysql://mysql-service/crunshbase?charset=utf8"
 
 # sql statement to select top-<limit> companies with most workers
 CMPS_SELECT = """
@@ -112,22 +110,32 @@ class SQLToESImporter(object):
             raise
 
     def push(self, company_document: Dict) -> bool:
-        self.insertions += 1
         es_result = self.es_client.index(
             index=self.es_index,
             doc_type='company',
             id=self.insertions,
             body=company_document
         )
-        return es_result['created'] and True or False
+        if es_result['created']:
+            self.insertions += 1
+            return True
+        else:
+            return False
 
     def delete_index(self):
         self.es_client.indices.delete(index=self.es_index, ignore=(400, 404))
 
-    def do_import(self):
+    def reimport(self) -> int:
         self.insertions = 0
+        self.delete_index()
         for company_document in self.pull():
             self.push(company_document)
         return self.insertions
+
+
+if __name__ == "__main__":
+    sql_to_es_importer = SQLToESImporter(company_count=100)
+    insertions = sql_to_es_importer.reimport()
+    print(f"{insertions} documents have been re-imported")
 
 
