@@ -1,0 +1,149 @@
+/* big area */
+.grid-container {
+    display: grid;
+    grid-template-areas:
+            'header header header header header'
+            'menu main main main right'
+            'menu footer footer footer footer';
+    grid-gap: 10px;
+    padding: 10px;
+}
+
+.item1 {
+    grid-area: header;
+}
+
+.item2 {
+    grid-area: menu;
+}
+
+.item3 {
+    grid-area: main;
+}
+
+.item4 {
+    grid-area: right;
+}
+
+.item5 {
+    grid-area: footer;
+}
+
+.grid-container > div {
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    text-align: center;
+}
+
+/* login area */
+.login-grid-container {
+    display: grid;
+    grid-template-areas:
+            'login-label1 login-field1 login-field1'
+            'login-label2 login-field2 login-field2'
+            'login-submit1 login-submit2 login-submit3';
+    grid-gap: 10px;
+    padding: 10px;
+}
+
+.login-label1 {
+    grid-area: login-label1;
+}
+
+.login-field1 {
+    grid-area: login-field1;
+}
+
+.login-label2 {
+    grid-area: login-label2;
+}
+
+.login-field2 {
+    grid-area: login-field2;
+}
+
+.login-submit {
+    grid-area: login-submit2;
+}
+
+.login-grid-container > div {
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    padding: 20px;
+}
+
+/* search area */
+.search-grid-container {
+    display: grid;
+    grid-template-areas:
+            'search-label1 search-field1 search-field1 search-field1 search-field1 search-submit'
+            'search-result search-result search-result search-result search-result search-result';
+    grid-gap: 10px;
+    padding: 10px;
+}
+
+.search-label {
+    grid-area: search-label1;
+}
+
+.search-field {
+    grid-area: search-field1;
+}
+
+.search-submit {
+    grid-area: search-submit;
+}
+
+.search-results {
+    grid-area: search-result;
+}
+
+.search-grid-container > div {
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    padding: 20px;
+}
+
+/* company profile area */
+.company-grid-container {
+    display: grid;
+    grid-template-areas:
+            'company-label1 company-name     company-name'
+            'company-label2 company-location company-location'
+            'company-label3 company-industry company-industry'
+            'company-notes  company-notes    company-notes';
+    grid-gap: 10px;
+    padding: 10px;
+}
+
+.company-label1 {
+    grid-area: company-label1;
+}
+
+.company-name {
+    grid-area: company-name;
+}
+
+.company-label2 {
+    grid-area: company-label2;
+}
+
+.company-location {
+    grid-area: company-location;
+}
+
+.company-label3 {
+    grid-area: company-label3;
+}
+
+.company-industry {
+    grid-area: company-industry;
+}
+
+.company-notes {
+    grid-area: company-notes;
+}
+
+.company-grid-container > div {
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    padding: 20px;
+}
+
