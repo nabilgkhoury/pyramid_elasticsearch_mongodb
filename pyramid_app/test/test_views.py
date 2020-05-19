@@ -2,7 +2,6 @@
 import unittest
 
 from pyramid import testing
-from pyramid.response import Response
 
 
 class ViewTests(unittest.TestCase):
@@ -29,6 +28,7 @@ class ViewTests(unittest.TestCase):
     def test_profile(self):
         from pyramid_app.views import company_profile
         request = testing.DummyRequest()
+        request.params = dict(company_id='c:1242')
 
         response = company_profile(request)
         self.assertIn('Profile', response['title'])
@@ -44,15 +44,12 @@ class FunctionalTests(unittest.TestCase):
 
     def test_login(self):
         response = self.test_app.get('/login')
-        self.assertEqual('login', response['title'])
         self.assertIn(b'Login', response.body)
 
     def test_search(self):
-        response = self.test_app.get('/search')
-        self.assertEqual('search', response['title'])
+        response = self.test_app.get('/search?search_field')
         self.assertIn(b'Search', response.body)
 
     def test_profile(self):
-        response = self.test_app.get('/company')
-        self.assertEqual('company profile', response['title'])
-        self.assertIn('bProfile', response.body)
+        response = self.test_app.get('/company?company_id=c%3A1242')
+        self.assertIn(b'Profile', response.body)
