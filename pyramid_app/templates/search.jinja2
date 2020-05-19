@@ -1,8 +1,10 @@
 {% extends "templates/layout.jinja2" %}
 {% block content %}
     <h1>{{ title }}</h1>
-    <ul>
-        <li>Username</li>
-        <li>Password</li>
-    </ul>
+    <form action="/search" class="search-grid-container">
+        <label class="search-label" for="search_field">Search:</label>
+        <input class="search-field" type="text" id="search_field" name="search_field" value="">
+        <input class="search-submit" type="submit" value="Enter">
+        <div class="search-results"> Search Results </div>
+    </form>
 {% endblock %}

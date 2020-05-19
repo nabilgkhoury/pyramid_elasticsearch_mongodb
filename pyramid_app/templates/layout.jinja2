@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Hello World!</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="utf-8">
+    <title>Company Notes App</title>
+    <link rel="stylesheet" href="../static/styles.css"/>
 </head>
 <body>
-  <div id="content">{% block content %}{% endblock %}</div>
+<div class="grid-container">
+    <div class="item1">Header</div>
+    <div class="item2">Menu</div>
+    <div class="item3" id="content">{% block content %}{% endblock %}</div>
+    <div class="item4">Right</div>
+    <div class="item5">Footer</div>
 </body>
 </html>

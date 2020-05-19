@@ -1,8 +1,13 @@
 {% extends "templates/layout.jinja2" %}
 {% block content %}
     <h1>{{ title }}</h1>
-    <ul>
-        <li>Username</li>
-        <li>Password</li>
-    </ul>
+    <form action="/company" class="company-grid-container">
+        <label class="company-label1" for="company-name">Name:</label>
+        <input class="company-name" type="text" id="company-name" name="company-name" value="">
+        <label class="company-label2" for="company-location">Location:</label>
+        <input class="company-location" type="text" id="company-location" name="company-location" value="">
+        <label class="company-label3" for="company-industry">Industry:</label>
+        <input class="company-industry" type="text" id="company-industry" name="company-industry" value="">
+        <div class="company-notes" id="company-notes"> Company Notes</div>
+    </form>
 {% endblock %}
