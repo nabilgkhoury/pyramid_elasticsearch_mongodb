@@ -102,6 +102,7 @@ class SQLToESImporter(object):
                             industry=company['industry'],
                             location=company['location'],
                             worker_count=company['worker_count'],
+                            events=company_events,
                         )
                     except KeyError:
                         raise
