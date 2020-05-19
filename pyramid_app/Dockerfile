@@ -13,5 +13,5 @@ RUN pip3 install -r requirements.txt
 
 ENV PYTHONPATH "${PYTHONPATH}:/app"
 
-ENTRYPOINT ["python"]
-CMD ["app.py"]
+#ENTRYPOINT ["python"]
+CMD ["python", "app.py"]
