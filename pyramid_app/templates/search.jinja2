@@ -3,8 +3,21 @@
     <h1>{{ title }}</h1>
     <form action="/search" class="search-grid-container">
         <label class="search-label" for="search_field">Search:</label>
-        <input class="search-field" type="text" id="search_field" name="search_field" value="">
+        <input class="search-field" type="text" id="search_field" name="search_field" value="{{ text }}">
         <input class="search-submit" type="submit" value="Enter">
-        <div class="search-results"> Search Results </div>
     </form>
+    <div class="search-results"> Search Results
+        <form action="/export" class="results-grid-container">
+            {% for hit in hits %}
+                <input class="result-checkbox" type="checkbox" id="checkbox{{loop.index}}"
+                       name="checkbox{{loop.index}}" value="{{ hit.company_id }}"
+                >
+                <a class="result-item"
+                   href="{{ request.route_url('company', _query=dict(company_id=hit.company_id)) }}"
+                > {{ hit.company_name }} - {{ hit.location }}
+                </a>
+            {% endfor %}
+            <input class="result-export" type="submit" value="Export">
+        </form>
+    </div>
 {% endblock %}
