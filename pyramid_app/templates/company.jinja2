@@ -3,11 +3,21 @@
     <h1>{{ title }}</h1>
     <form action="/company" class="company-grid-container">
         <label class="company-label1" for="company-name">Name:</label>
-        <input class="company-name" type="text" id="company-name" name="company-name" value="">
+        <input class="company-name" type="text" id="company-name" name="company-name"
+               value="{{ company.company_name }}">
         <label class="company-label2" for="company-location">Location:</label>
-        <input class="company-location" type="text" id="company-location" name="company-location" value="">
+        <input class="company-location" type="text" id="company-location" name="company-location"
+               value="{{ company.location }}">
         <label class="company-label3" for="company-industry">Industry:</label>
-        <input class="company-industry" type="text" id="company-industry" name="company-industry" value="">
-        <div class="company-notes" id="company-notes"> Company Notes</div>
+        <input class="company-industry" type="text" id="company-industry" name="company-industry"
+               value="{{ company.industry }}">
     </form>
+    <div class="company-events" id="company-events">Company Events
+        <div class="events-grid-container">
+        {% for event in company.events %}
+            <label class="event-code" id="event{{ loop.index }}"> {{ event.event_code }} </label>
+            <a class="result-item" href="{{ event.event_url }}"> {{ event.event_desc }} </a>
+        {% endfor %}
+        </div>
+    </div>
 {% endblock %}
